@@ -17,6 +17,7 @@
 - Qt Framework
 - Qt Serial Port
 - Qt Bluetooth
+- LinuxdeployQT
 
 ## Как использовать
 
