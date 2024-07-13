@@ -1,10 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-
 #include <QMainWindow>
 #include <QWidget>
-
 #include <QtSerialPort/QSerialPort>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QtBluetooth/QBluetoothDeviceDiscoveryAgent>
@@ -12,7 +10,6 @@
 #include <QMutex>
 #include <QThread>
 #include <QWaitCondition>
-
 #include <QTimer>
 #include <QTime>
 
@@ -33,18 +30,11 @@ private slots:
     void receiveMessage();
     void on_pushButton_clicked();
     void on_pushButton_3_clicked();
-    //void on_pushButton_4_clicked();
     void on_pushButton_5_clicked();
-
-    //void deviceDiscovered(const QBluetoothDeviceInfo &device);
-
-    //void startDeviceDiscovery();
-
     void on_pushButton_4_clicked();
 
 signals:
     void error(const QString s);
-
 
 private:
     Ui::MainWindow *ui;
@@ -77,6 +67,15 @@ private:
     int x8;
     int arr[8];
     bool ok;
+
+    // New constants
+    const QString ADC1_CODE = "41444331";
+    const QString ADC2_CODE = "41444332";
+    const QString TARGET_CODE = "227d0a0d";
+    const QString HEX_PREFIX = "223a2022";
+
+    // Helper functions
+    int calculateModBusCRC16(int* data, unsigned short length);
 };
 
 class Sleeper : public QThread
@@ -91,4 +90,5 @@ public:
     static void sleep(unsigned long secs){
         QThread::sleep(secs);}
 };
+
 #endif // MAINWINDOW_H
